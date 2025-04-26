@@ -7,15 +7,7 @@ interface JwtPayload {
   role: 'admin' | 'user'
 }
 
-// Extiende el objeto Request para incluir info del usuario
-declare global {
-  namespace Express {
-    interface Request {
-      userId?: string
-      role?: 'admin' | 'user'
-    }
-  }
-}
+ 
 
 export const protect = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const authHeader = req.headers.authorization
