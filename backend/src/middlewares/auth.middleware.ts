@@ -26,11 +26,10 @@ export const protect = async (req: Request, res: Response, next: NextFunction): 
   }
 
   const token = authHeader.split(' ')[1]
-  console.log('Token recibido:', token)
+ 
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as JwtPayload
-    console.log('Token decodificado:', decoded)
 
     // Verificamos si la sesión está activa en Redis
     const session = await redisClient.get(`session:${decoded.id}`)
@@ -44,8 +43,7 @@ export const protect = async (req: Request, res: Response, next: NextFunction): 
     req.userId = decoded.id
     req.role = sessionData.role
 
-    console.log('Autenticación exitosa. userId:', req.userId, 'role:', req.role)
-    console.log('ID del usuario desde protect:', req.userId)
+     
 
 
     next()

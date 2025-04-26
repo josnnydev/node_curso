@@ -19,7 +19,7 @@ const clearCache = async (userId: mongoose.Types.ObjectId) => {
 
 
 export const getProducts = async (_req: Request, res: Response): Promise<void> => {
-  console.log('User ID en getProducts:', _req.userId)
+   
   const userId = _req.userId
   const { page = 1, limit = 10 } = _req.query
 
@@ -44,7 +44,7 @@ export const getProducts = async (_req: Request, res: Response): Promise<void> =
     const products = await ProductModel.find({ userId })
     .skip((Number(page) - 1) * Number(limit))
     .limit(Number(limit))
-    console.log('Productos encontrados:', products) 
+     
 
      
 
@@ -76,7 +76,7 @@ export const createProduct = async (
   req: Request<{}, {}, ProductBody>,
   res: Response
 ): Promise<void> => {
-  console.log('User ID en createProduct:', req.userId)
+  
   const { name, description, price, image } = req.body
   const userId = req.userId
 

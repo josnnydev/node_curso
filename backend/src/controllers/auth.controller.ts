@@ -3,7 +3,7 @@ import User from '../models/user.model'
 import jwt from 'jsonwebtoken'
 import { redisClient } from '../config/redis'
 import bcrypt from 'bcryptjs'
-import mongoose from 'mongoose'
+ 
 
 process.loadEnvFile()
 
@@ -35,7 +35,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     
     
     const user = new User({ email, password, role })
-    console.log(password);
+    
     
     await user.save()
 
@@ -88,8 +88,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       return
     }
 
-    console.log('Contraseña ingresada para comparar:', password)  // Mostrar la contraseña ingresada
-    console.log('Contraseña guardada en la base de datos:', user.password)  // Mostrar la contraseña cifrada almacenada
+    
 
     // Verificamos si la contraseña coincide
     const trimmedPassword = password.trim() // Esto elimina espacios innecesarios

@@ -1,4 +1,5 @@
 import express, { Application } from 'express'
+import  morgan from 'morgan'
  
 import cors from 'cors'
 import connectDB from './config/db'
@@ -19,6 +20,7 @@ const startServer = async (): Promise<void> => {
     await connectDB()
 
     const app: Application = express()
+    app.use(morgan('dev'))
     const PORT: number = Number(process.env.PORT) || 3000
 
     // Middlewares
